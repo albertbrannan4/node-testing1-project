@@ -75,17 +75,7 @@ class Counter {
    * counter.countDown() // returns 0
    */
   countDown() {
-    if (this.count > 0) {
-      if (this.called === 0) {
-        this.called++;
-        return this.count;
-      } else {
-        this.count--;
-        return this.count;
-      }
-    } else {
-      return this.count;
-    }
+    return this.count > 0 ? this.count-- : this.count;
   }
 }
 
