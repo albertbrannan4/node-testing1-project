@@ -184,8 +184,9 @@ class Car {
     if (gallons <= canTake) {
       this.tank += gallons;
     } else {
-      this.tank += canTake;
+      this.tank = this.tankSize;
     }
+    return this.tank * this.mpg;
   }
 }
 
