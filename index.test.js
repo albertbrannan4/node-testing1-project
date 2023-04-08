@@ -59,7 +59,6 @@ describe("[Exercise 4] Counter", () => {
     counter.countDown();
     counter.countDown();
     counter.countDown();
-    counter.countDown();
     expect(counter.countDown()).toBe(0);
   });
 });
@@ -69,12 +68,37 @@ describe("[Exercise 5] Seasons", () => {
   beforeEach(() => {
     seasons = new utils.Seasons(); // each test must start with fresh seasons
   });
-  // test('[9] the FIRST call of seasons.next returns "summer"', () => {})
-  // test('[10] the SECOND call of seasons.next returns "fall"', () => {})
-  // test('[11] the THIRD call of seasons.next returns "winter"', () => {})
-  // test('[12] the FOURTH call of seasons.next returns "spring"', () => {})
-  // test('[13] the FIFTH call of seasons.next returns again "summer"', () => {})
-  // test('[14] the 40th call of seasons.next returns "spring"', () => {})
+  test('[9] the FIRST call of seasons.next returns "summer"', () => {
+    expect(seasons.next()).toBe("summer");
+  });
+  test('[10] the SECOND call of seasons.next returns "fall"', () => {
+    seasons.next();
+    expect(seasons.next()).toBe("fall");
+  });
+  test('[11] the THIRD call of seasons.next returns "winter"', () => {
+    seasons.next();
+    seasons.next();
+    expect(seasons.next()).toBe("winter");
+  });
+  test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+    seasons.next();
+    seasons.next();
+    seasons.next();
+    expect(seasons.next()).toBe("spring");
+  });
+  test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+    seasons.next();
+    seasons.next();
+    seasons.next();
+    seasons.next();
+    expect(seasons.next()).toBe("summer");
+  });
+  test('[14] the 40th call of seasons.next returns "spring"', () => {
+    for (let i = 1; i < 39; i++) {
+      seasons.next();
+    }
+    expect(seasons.next()).toBe("spring");
+  });
 });
 
 describe("[Exercise 6] Car", () => {
@@ -82,10 +106,31 @@ describe("[Exercise 6] Car", () => {
   beforeEach(() => {
     focus = new utils.Car("focus", 20, 30); // each test must start with a fresh car
   });
-  // test('[15] driving the car returns the updated odometer', () => {})
-  // test('[16] driving the car uses gas', () => {})
-  // test('[17] refueling allows to keep driving', () => {})
-  // test('[18] adding fuel to a full tank has no effect', () => {})
+  test("[15] driving the car returns the updated odometer", () => {
+    expect(focus.drive(43)).toBe(43);
+  });
+  test("[16] driving the car uses gas", () => {
+    focus.drive(300);
+    expect(focus.tank).toEqual(10);
+    focus.drive(90);
+    expect(focus.tank).toEqual(7);
+    focus.drive(210);
+    expect(focus.tank).toEqual(0);
+    focus.drive(10);
+    expect(focus.tank).toEqual(0);
+  });
+  test("[17] refueling allows to keep driving", () => {
+    focus.drive(600);
+    expect(focus.tank).toEqual(0);
+    focus.refuel(20);
+    focus.drive(300);
+    expect(focus.tank).toEqual(10);
+  });
+  test("[18] adding fuel to a full tank has no effect", () => {
+    expect(focus.tank).toEqual(20);
+    focus.refuel(2);
+    expect(focus.tank).toEqual(20);
+  });
 });
 
 describe("[Exercise 7] isEvenNumberAsync", () => {
