@@ -84,7 +84,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
-    this.season = 0;
+    this.currentSeason = 0;
+    this.seasons = ["summer", "fall", "winter", "spring"];
   }
 
   /**
@@ -101,15 +102,28 @@ class Seasons {
    */
   next() {
     // ✨ implement
-    const seasons = ["summer", "fall", "winter", "spring"];
-    if (this.season <= 3) {
-      return seasons[this.season++];
+    let result = this.seasons[this.currentSeason];
+    if (this.currentSeason === 3) {
+      this.currentSeason = 0;
     } else {
-      this.season = 0;
-      return seasons[this.season];
+      this.currentSeason++;
     }
+    return result;
   }
 }
+const season = new Seasons();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
+season.next();
 
 class Car {
   /**

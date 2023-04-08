@@ -94,9 +94,10 @@ describe("[Exercise 5] Seasons", () => {
     expect(seasons.next()).toBe("summer");
   });
   test('[14] the 40th call of seasons.next returns "spring"', () => {
-    for (let i = 1; i < 39; i++) {
+    for (let i = 0; i < 39; i++) {
       seasons.next();
     }
+
     expect(seasons.next()).toBe("spring");
   });
 });
