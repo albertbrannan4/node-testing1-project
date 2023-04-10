@@ -111,19 +111,6 @@ class Seasons {
     return result;
   }
 }
-const season = new Seasons();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
-season.next();
 
 class Car {
   /**
@@ -155,16 +142,17 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
-    let canTravel = this.tank * this.mpg;
-    if (distance <= canTravel) {
+    let milesCanDrive = this.tank * this.mpg;
+    if (distance <= milesCanDrive) {
+      this.odometer += distance;
       this.tank =
-        ((canTravel - distance) / (this.tankSize * this.mpg)) * this.tankSize;
-      return (this.odometer += distance);
+        ((milesCanDrive - distance) / (this.tankSize * this.mpg)) *
+        this.tankSize;
     } else {
-      this.tank =
-        ((canTravel - canTravel) / (this.tankSize * this.mpg)) * this.tankSize;
-      return this.odometer;
+      this.odometer += milesCanDrive;
+      this.tank = 0;
     }
+    return this.odometer;
   }
 
   /**
